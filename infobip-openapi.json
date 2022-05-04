@@ -1,0 +1,714 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Infobip Redoc OpenApi Specification",
+    "description" : "Merged OpenApi Spec containing all public endpoints for documentation purposes.",
+    "contact" : {
+      "name" : "Infobip support",
+      "email" : "support@infobip.com"
+    },
+    "version" : "1.0.0"
+  },
+  "tags" : [ {
+    "name" : "Send SMS"
+  } ],
+  "paths" : {
+    "/sms/2/text/advanced" : {
+      "post" : {
+        "tags" : [ "Send SMS" ],
+        "summary" : "Send SMS message",
+        "description" : "99% of all use cases can be achieved by using this API method. Everything from sending a simple single message to a single destination, up to batch sending of personalized messages to the thousands of recipients with a single API request. Language, transliteration, scheduling and every advanced feature you can think of is supported.",
+        "externalDocs" : {
+          "description" : "Learn more about SMS channel and use cases",
+          "url" : "https://www.infobip.com/docs/sms"
+        },
+        "operationId" : "channels/sms/send-sms-message",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/infobip-sms-api.openapi.com.infobip.sms.api.v2.models.request.textual.SMSAdvancedTextualRequest"
+              },
+              "examples" : {
+                "Send basic textual messages" : {
+                  "value" : {
+                    "messages" : [ {
+                      "destinations" : [ {
+                        "to" : "41793026727"
+                      } ],
+                      "from" : "InfoSMS",
+                      "text" : "This is a sample message"
+                    } ]
+                  }
+                },
+                "Send fully-featured textual message" : {
+                  "value" : {
+                    "bulkId" : "BULK-ID-123-xyz",
+                    "messages" : [ {
+                      "callbackData" : "DLR callback data",
+                      "destinations" : [ {
+                        "messageId" : "MESSAGE-ID-123-xyz",
+                        "to" : "41793026727"
+                      }, {
+                        "to" : "41793026834"
+                      } ],
+                      "flash" : false,
+                      "from" : "InfoSMS",
+                      "intermediateReport" : true,
+                      "language" : {
+                        "languageCode" : "TR"
+                      },
+                      "notifyContentType" : "application/json",
+                      "notifyUrl" : "https://www.example.com/sms/advanced",
+                      "text" : "Artık Ulusal Dil Tanımlayıcısı ile Türkçe karakterli smslerinizi rahatlıkla iletebilirsiniz.",
+                      "transliteration" : "TURKISH",
+                      "validityPeriod" : 720
+                    }, {
+                      "deliveryTimeWindow" : {
+                        "days" : [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY" ],
+                        "from" : {
+                          "hour" : 6,
+                          "minute" : 0
+                        },
+                        "to" : {
+                          "hour" : 15,
+                          "minute" : 30
+                        }
+                      },
+                      "destinations" : [ {
+                        "to" : "41793026700"
+                      } ],
+                      "from" : "41793026700",
+                      "sendAt" : "2021-08-25T16:00:00.000+0000",
+                      "text" : "A long time ago, in a galaxy far, far away... It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire."
+                    } ],
+                    "tracking" : {
+                      "track" : "SMS",
+                      "type" : "MY_CAMPAIGN"
+                    }
+                  }
+                },
+                "Send flash message" : {
+                  "description" : "Send a message that will pop-up on the user's phone",
+                  "value" : {
+                    "messages" : [ {
+                      "destinations" : [ {
+                        "to" : "41793026727"
+                      } ],
+                      "flash" : true,
+                      "from" : "InfoSMS",
+                      "text" : "Toto, I've got a feeling we're not in Kansas anymore."
+                    } ]
+                  }
+                },
+                "SMS language" : {
+                  "description" : "Crossing SMS language barriers with the National Language Identifier for Turkish, Spanish and Portuguese",
+                  "value" : {
+                    "messages" : [ {
+                      "destinations" : [ {
+                        "to" : "41793026727"
+                      } ],
+                      "from" : "InfoSMS",
+                      "language" : {
+                        "languageCode" : "TR"
+                      },
+                      "text" : "Artık Ulusal Dil Tanımlayıcısı ile Türkçe karakterli smslerinizi rahatlıkla iletebilirsiniz."
+                    } ]
+                  }
+                },
+                "SMS transliteration" : {
+                  "description" : "Send full-size messages in original language alphabet using transliteration conversion",
+                  "value" : {
+                    "messages" : [ {
+                      "destinations" : [ {
+                        "to" : "41793026727"
+                      } ],
+                      "from" : "InfoSMS",
+                      "text" : "Ως Μεγαρικό ψήφισμα είνα…ι καθολικό εμπάργκο στα",
+                      "transliteration" : "GREEK"
+                    } ]
+                  }
+                }
+              }
+            },
+            "application/xml" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/infobip-sms-api.openapi.com.infobip.sms.api.v2.models.request.textual.SMSAdvancedTextualRequest"
+              },
+              "examples" : {
+                "Send basic textual messages" : {
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SMSAdvancedTextualRequest>\n  <messages>\n    <message>\n      <from>InfoSMS</from>\n      <text>This is a sample message</text>\n      <destinations>\n        <destination>\n          <to>41793026727</to>\n        </destination>\n      </destinations>\n    </message>\n  </messages>\n</SMSAdvancedTextualRequest>\n"
+                },
+                "Send fully-featured textual message" : {
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SMSAdvancedTextualRequest>\n  <bulkId>BULK-ID-123-xyz</bulkId>\n  <tracking>\n    <track>SMS</track>\n    <type>MY_CAMPAIGN</type>\n  </tracking>\n  <messages>\n    <message>\n      <callbackData>DLR callback data</callbackData>\n      <flash>false</flash>\n      <from>InfoSMS</from>\n      <intermediateReport>true</intermediateReport>\n      <language>\n        <languageCode>TR</languageCode>\n      </language>\n      <notifyContentType>application/json</notifyContentType>\n      <notifyUrl>https://www.example.com/sms/advanced</notifyUrl>\n      <text>Artık Ulusal Dil Tanımlayıcısı ile Türkçe karakterli smslerinizi rahatlıkla iletebilirsiniz.</text>\n      <transliteration>TURKISH</transliteration>\n      <validityPeriod>720</validityPeriod>\n      <destinations>\n        <destination>\n          <messageId>MESSAGE-ID-123-xyz</messageId>\n          <to>41793026727</to>\n        </destination>\n        <destination>\n          <to>41793026834</to>\n        </destination>\n      </destinations>\n    </message>\n    <message>\n      <deliveryTimeWindow>\n        <days>\n          <days>MONDAY</days>\n          <days>TUESDAY</days>\n          <days>WEDNESDAY</days>\n          <days>THURSDAY</days>\n          <days>FRIDAY</days>\n          <days>SATURDAY</days>\n          <days>SUNDAY</days>\n        </days>\n        <from>\n          <hour>6</hour>\n          <minute>0</minute>\n        </from>\n        <to>\n          <hour>15</hour>\n          <minute>30</minute>\n        </to>\n      </deliveryTimeWindow>\n      <from>41793026700</from>\n      <sendAt>2021-08-25T16:00:00.000+0000</sendAt>\n      <text>A long time ago, in a galaxy far, far away... It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.</text>\n      <destinations>\n        <destination>\n          <to>41793026700</to>\n        </destination>\n      </destinations>\n    </message>\n  </messages>\n</SMSAdvancedTextualRequest>\n"
+                },
+                "Send flash message" : {
+                  "description" : "Send a message that will pop-up on the user's phone",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SMSAdvancedTextualRequest>\n  <messages>\n    <message>\n      <flash>true</flash>\n      <from>InfoSMS</from>\n      <text>Toto, I've got a feeling we're not in Kansas anymore.</text>\n      <destinations>\n        <destination>\n          <to>41793026727</to>\n        </destination>\n      </destinations>\n    </message>\n  </messages>\n</SMSAdvancedTextualRequest>\n"
+                },
+                "SMS language" : {
+                  "description" : "Crossing SMS language barriers with the National Language Identifier for Turkish, Spanish and Portuguese",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SMSAdvancedTextualRequest>\n  <messages>\n    <message>\n      <from>InfoSMS</from>\n      <language>\n        <languageCode>TR</languageCode>\n      </language>\n      <text>Artık Ulusal Dil Tanımlayıcısı ile Türkçe karakterli smslerinizi rahatlıkla iletebilirsiniz.</text>\n      <destinations>\n        <destination>\n          <to>41793026727</to>\n        </destination>\n      </destinations>\n    </message>\n  </messages>\n</SMSAdvancedTextualRequest>\n"
+                },
+                "SMS transliteration" : {
+                  "description" : "Send full-size messages in original language alphabet using transliteration conversion",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SMSAdvancedTextualRequest>\n  <messages>\n    <message>\n      <from>InfoSMS</from>\n      <text>Ως Μεγαρικό ψήφισμα είνα…ι καθολικό εμπάργκο στα</text>\n      <transliteration>GREEK</transliteration>\n      <destinations>\n        <destination>\n          <to>41793026727</to>\n        </destination>\n      </destinations>\n    </message>\n  </messages>\n</SMSAdvancedTextualRequest>\n"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.com.infobip.sms.api.v2.models.response.SMSResponse"
+                },
+                "examples" : {
+                  "Response for request with one destination" : {
+                    "value" : {
+                      "bulkId" : "2034072219640523072",
+                      "messages" : [ {
+                        "messageId" : "41793026727",
+                        "status" : {
+                          "description" : "Message sent to next instance",
+                          "groupId" : 1,
+                          "groupName" : "PENDING",
+                          "id" : 26,
+                          "name" : "MESSAGE_ACCEPTED"
+                        },
+                        "to" : "2250be2d4219-3af1-78856-aabe-1362af1edfd2"
+                      } ]
+                    }
+                  },
+                  "Response for request with multiple destinations" : {
+                    "value" : {
+                      "bulkId" : "2034072219640523073",
+                      "messages" : [ {
+                        "messageId" : "41793026727",
+                        "status" : {
+                          "description" : "Message sent to next instance",
+                          "groupId" : 1,
+                          "groupName" : "PENDING",
+                          "id" : 26,
+                          "name" : "MESSAGE_ACCEPTED"
+                        },
+                        "to" : "2033247207850523791"
+                      }, {
+                        "messageId" : "41793026834",
+                        "status" : {
+                          "description" : "Message sent to next instance",
+                          "groupId" : 1,
+                          "groupName" : "PENDING",
+                          "id" : 26,
+                          "name" : "MESSAGE_ACCEPTED"
+                        },
+                        "to" : "2033247207850523792"
+                      } ]
+                    }
+                  }
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.com.infobip.sms.api.v2.models.response.SMSResponse"
+                },
+                "examples" : {
+                  "Response for request with one destination" : {
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><smsResponse>\n  <bulkId>2034072219640523072</bulkId>\n  <messages>\n    <message>\n      <messageId>41793026727</messageId>\n      <status>\n        <description>Message sent to next instance</description>\n        <groupId>1</groupId>\n        <groupName>PENDING</groupName>\n        <id>26</id>\n        <name>MESSAGE_ACCEPTED</name>\n      </status>\n      <to>2250be2d4219-3af1-78856-aabe-1362af1edfd2</to>\n    </message>\n  </messages>\n</smsResponse>\n"
+                  },
+                  "Response for request with multiple destinations" : {
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?><smsResponse>\n  <bulkId>2034072219640523073</bulkId>\n  <messages>\n    <message>\n      <messageId>41793026727</messageId>\n      <status>\n        <description>Message sent to next instance</description>\n        <groupId>1</groupId>\n        <groupName>PENDING</groupName>\n        <id>26</id>\n        <name>MESSAGE_ACCEPTED</name>\n      </status>\n      <to>2033247207850523791</to>\n    </message>\n    <message>\n      <messageId>41793026834</messageId>\n      <status>\n        <description>Message sent to next instance</description>\n        <groupId>1</groupId>\n        <groupName>PENDING</groupName>\n        <id>26</id>\n        <name>MESSAGE_ACCEPTED</name>\n      </status>\n      <to>2033247207850523792</to>\n    </message>\n  </messages>\n</smsResponse>\n"
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Error responses",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiException"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiException"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error responses",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiException"
+                }
+              },
+              "application/xml" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiException"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "IBSSOTokenHeader" : [ ]
+        }, {
+          "APIKeyHeader" : [ ]
+        }, {
+          "Basic" : [ ]
+        }, {
+          "OAuth2" : [ ]
+        } ],
+        "x-additionalInfo" : {
+          "markdown" : "### Related\n- [Activate Verified SMS - get look and feel of chat apps on SMS communication](https://www.infobip.com/docs/sms/verified-sms)\n- [Buy numbers for sending and receiving messages](#platform-&-connectivity/numbers)\n"
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "infobip-sms-api.openapi.SendingSpeedLimit" : {
+        "required" : [ "amount" ],
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "integer",
+            "description" : "The number of messages to be sent per timeUnit. By default, the system sends messages as fast as the infrastructure allows. Use this parameter to adapt sending capacity to your needs. The system is only able to work against its maximum capacity for ambitious message batches.",
+            "format" : "int32",
+            "writeOnly" : true
+          },
+          "timeUnit" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.SpeedLimitTimeUnit"
+          }
+        },
+        "description" : "Limits the send speed when sending messages in bulk to deliver messages over a longer period of time. You may wish to use this to allow your systems or agents to handle large amounts of incoming traffic, e.g., if you are expecting recipients to follow through with a call-to-action option from a message you sent. Not setting a send speed limit can overwhelm your resources with incoming traffic."
+      },
+      "infobip-sms-api.openapi.DeliveryTimeWindow" : {
+        "required" : [ "days" ],
+        "type" : "object",
+        "properties" : {
+          "days" : {
+            "type" : "array",
+            "description" : "Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+            "writeOnly" : true,
+            "items" : {
+              "$ref" : "#/components/schemas/infobip-sms-api.openapi.DeliveryDay"
+            }
+          },
+          "from" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.DeliveryTime"
+          },
+          "to" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.DeliveryTime"
+          }
+        },
+        "description" : "Sets specific scheduling options to send a message within daily or hourly intervals.",
+        "writeOnly" : true
+      },
+      "infobip-sms-api.openapi.Language" : {
+        "type" : "object",
+        "properties" : {
+          "languageCode" : {
+            "type" : "string",
+            "description" : "Language code for the correct character set. Possible values: `TR` for Turkish, `ES` for Spanish, `PT` for Portuguese, or `AUTODETECT` to let platform select the character set based on message content."
+          }
+        },
+        "description" : "Sets the language parameters for the message being sent.",
+        "writeOnly" : true
+      },
+      "infobip-sms-api.openapi.ApiRequestErrorDetails" : {
+        "type" : "object",
+        "properties" : {
+          "messageId" : {
+            "type" : "string",
+            "description" : "Identifier of the error.",
+            "example" : "BAD_REQUEST"
+          },
+          "text" : {
+            "type" : "string",
+            "description" : "Detailed error description.",
+            "example" : "Bad request"
+          },
+          "validationErrors" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "array",
+              "description" : "Map of validation errors.",
+              "example" : "\"request.message.content.media.file.url\": [\"is not a valid url\"]",
+              "items" : {
+                "type" : "string",
+                "description" : "Map of validation errors.",
+                "example" : "\"request.message.content.media.file.url\": [\"is not a valid url\"]"
+              }
+            },
+            "description" : "Map of validation errors.",
+            "example" : "\"request.message.content.media.file.url\": [\"is not a valid url\"]"
+          }
+        }
+      },
+      "infobip-sms-api.openapi.ApiException" : {
+        "type" : "object",
+        "properties" : {
+          "requestError" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiRequestError"
+          }
+        }
+      },
+      "infobip-sms-api.openapi.SpeedLimitTimeUnit" : {
+        "type" : "string",
+        "description" : "The time unit to define when setting a messaging speed limit. Defaults to `MINUTE`.",
+        "writeOnly" : true,
+        "default" : "MINUTE",
+        "enum" : [ "MINUTE", "HOUR", "DAY" ]
+      },
+      "infobip-sms-api.openapi.com.infobip.sms.api.v2.models.response.SMSResponse" : {
+        "title" : "SMSResponse",
+        "type" : "object",
+        "properties" : {
+          "bulkId" : {
+            "type" : "string",
+            "description" : "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. Typically, used to fetch [delivery reports](#channels/sms/get-outbound-sms-message-delivery-reports) and [message logs](#channels/sms/get-outbound-sms-message-logs).",
+            "readOnly" : true
+          },
+          "messages" : {
+            "type" : "array",
+            "description" : "An array of message objects of a single message or multiple messages sent under one bulk ID.",
+            "readOnly" : true,
+            "items" : {
+              "$ref" : "#/components/schemas/infobip-sms-api.openapi.SMSResponseDetails"
+            }
+          }
+        }
+      },
+      "infobip-sms-api.openapi.ApiRequestError" : {
+        "type" : "object",
+        "properties" : {
+          "serviceException" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.ApiRequestErrorDetails"
+          }
+        }
+      },
+      "infobip-sms-api.openapi.SMSTextualMessage" : {
+        "required" : [ "destinations" ],
+        "type" : "object",
+        "properties" : {
+          "callbackData" : {
+            "maxLength" : 4000,
+            "minLength" : 0,
+            "type" : "string",
+            "description" : "Additional data that can be used for identifying, managing, or monitoring a message. Data included here will also be automatically included in the message [Delivery Report](#channels/sms/get-outbound-sms-message-delivery-reports). The maximum value is 4000 characters and any overhead may be truncated.",
+            "writeOnly" : true
+          },
+          "deliveryTimeWindow" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.DeliveryTimeWindow"
+          },
+          "destinations" : {
+            "type" : "array",
+            "description" : "An array of destination objects for where messages are being sent. A valid destination is required.",
+            "writeOnly" : true,
+            "items" : {
+              "$ref" : "#/components/schemas/infobip-sms-api.openapi.Destination"
+            }
+          },
+          "flash" : {
+            "type" : "boolean",
+            "description" : "Allows for sending a [flash SMS](https://www.infobip.com/docs/sms/message-types#flash-sms) to automatically appear on recipient devices without interaction. Set to `true` to enable flash SMS, or leave the default value, `false` to send a standard SMS.",
+            "writeOnly" : true,
+            "default" : false
+          },
+          "from" : {
+            "type" : "string",
+            "description" : "The sender ID which can be alphanumeric or numeric (e.g., `CompanyName`). Make sure you don't exceed [character limit](https://www.infobip.com/docs/sms/get-started#sender-names).",
+            "writeOnly" : true
+          },
+          "intermediateReport" : {
+            "type" : "boolean",
+            "description" : "The [real-time intermediate delivery report](#channels/sms/receive-outbound-sms-message-report) containing GSM error codes, messages status, pricing, network and country codes, etc., which will be sent on your callback server. Defaults to `false`.",
+            "writeOnly" : true
+          },
+          "language" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.Language"
+          },
+          "notifyContentType" : {
+            "type" : "string",
+            "description" : "Preferred delivery report content type, `application/json` or `application/xml`.",
+            "writeOnly" : true
+          },
+          "notifyUrl" : {
+            "type" : "string",
+            "description" : "The URL on your call back server on to which a delivery report will be sent. The [retry cycle](https://www.infobip.com/docs/sms/api#notify-url) for when your URL becomes unavailable uses the following formula: `1min + (1min * retryNumber * retryNumber)`.",
+            "writeOnly" : true,
+            "externalDocs" : {
+              "description" : "Delivery report format",
+              "url" : "#channels/sms/receive-sent-sms-report"
+            }
+          },
+          "regional" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.RegionalOptions"
+          },
+          "sendAt" : {
+            "type" : "string",
+            "description" : "Date and time when the message is to be sent. Used for [scheduled SMS](#channels/sms/get-scheduled-sms-messages). Has the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSZ`, and can only be scheduled for no later than 180 days in advance.",
+            "format" : "date-time",
+            "writeOnly" : true
+          },
+          "text" : {
+            "type" : "string",
+            "description" : "Content of the message being sent.",
+            "writeOnly" : true
+          },
+          "transliteration" : {
+            "type" : "string",
+            "description" : "The transliteration of your sent message from one script to another. Transliteration is used to replace characters which are not recognized as part of your defaulted alphabet. Possible values: `TURKISH`, `GREEK`, `CYRILLIC`, `SERBIAN_CYRILLIC`, `CENTRAL_EUROPEAN`, `BALTIC` and `NON_UNICODE`.",
+            "writeOnly" : true
+          },
+          "validityPeriod" : {
+            "type" : "integer",
+            "description" : "The message validity period in minutes. When the period expires, it will not be allowed for the message to be sent. Validity period longer than 48h is not supported. Any bigger value will automatically default back to `2880`.",
+            "format" : "int64",
+            "writeOnly" : true
+          }
+        },
+        "description" : "An array of message objects of a single message or multiple messages sent under one bulk ID."
+      },
+      "infobip-sms-api.openapi.com.infobip.sms.api.v2.models.request.textual.SMSAdvancedTextualRequest" : {
+        "title" : "SMSTextualRequest",
+        "required" : [ "messages" ],
+        "type" : "object",
+        "properties" : {
+          "bulkId" : {
+            "type" : "string",
+            "description" : "Unique ID assigned to the request if messaging multiple recipients or sending multiple messages via a single API request. If not provided, it will be auto-generated and returned in the API response. Typically, used to fetch [delivery reports](#channels/sms/get-outbound-sms-message-delivery-reports) and [message logs](#channels/sms/get-outbound-sms-message-logs)."
+          },
+          "messages" : {
+            "type" : "array",
+            "description" : "An array of message objects of a single message or multiple messages sent under one bulk ID.",
+            "items" : {
+              "$ref" : "#/components/schemas/infobip-sms-api.openapi.SMSTextualMessage"
+            }
+          },
+          "sendingSpeedLimit" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.SendingSpeedLimit"
+          },
+          "tracking" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.Tracking"
+          }
+        }
+      },
+      "infobip-sms-api.openapi.DeliveryDay" : {
+        "type" : "string",
+        "description" : "Days of the week which are included in the delivery time window. At least one day must be provided. Separate multiple days with a comma.",
+        "writeOnly" : true,
+        "enum" : [ "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY" ]
+      },
+      "infobip-sms-api.openapi.Tracking" : {
+        "type" : "object",
+        "properties" : {
+          "baseUrl" : {
+            "type" : "string",
+            "description" : "Custom base URL for shortened links in messages when tracking URL conversions.",
+            "writeOnly" : true
+          },
+          "processKey" : {
+            "type" : "string",
+            "description" : "The process key which uniquely identifies conversion tracking.",
+            "writeOnly" : true
+          },
+          "track" : {
+            "type" : "string",
+            "description" : "Indicates if a message has to be tracked for conversion rates. Values are: `SMS` and `URL`.",
+            "writeOnly" : true
+          },
+          "type" : {
+            "type" : "string",
+            "description" : "Sets a custom conversion type naming convention, e.g. `ONE_TIME_PIN` or `SOCIAL_INVITES`.",
+            "writeOnly" : true
+          }
+        },
+        "description" : "Sets up tracking parameters to track conversion metrics and type."
+      },
+      "infobip-sms-api.openapi.Status" : {
+        "type" : "object",
+        "properties" : {
+          "action" : {
+            "type" : "string",
+            "description" : "Action that should be taken to recover from the error.",
+            "readOnly" : true
+          },
+          "description" : {
+            "type" : "string",
+            "description" : "Human-readable description of the status.",
+            "readOnly" : true
+          },
+          "groupId" : {
+            "type" : "integer",
+            "description" : "Status group ID.",
+            "format" : "int32",
+            "readOnly" : true
+          },
+          "groupName" : {
+            "type" : "string",
+            "description" : "Status group name that describes which category the status code belongs to, e.g. PENDING, UNDELIVERABLE, DELIVERED, EXPIRED, REJECTED.",
+            "readOnly" : true
+          },
+          "id" : {
+            "type" : "integer",
+            "description" : "Status ID.",
+            "format" : "int32",
+            "readOnly" : true
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "[Status name](https://www.infobip.com/docs/essentials/response-status-and-error-codes).",
+            "readOnly" : true
+          }
+        },
+        "description" : "Indicates the [status](https://www.infobip.com/docs/essentials/response-status-and-error-codes#api-status-codes) of the message and how to recover from an error should there be any.",
+        "readOnly" : true
+      },
+      "infobip-sms-api.openapi.Destination" : {
+        "required" : [ "to" ],
+        "type" : "object",
+        "properties" : {
+          "messageId" : {
+            "type" : "string",
+            "description" : "The ID that uniquely identifies the message sent.",
+            "writeOnly" : true
+          },
+          "to" : {
+            "maxLength" : 50,
+            "minLength" : 0,
+            "type" : "string",
+            "description" : "Message destination address. Addresses must be in international format (Example: `41793026727`).",
+            "writeOnly" : true
+          }
+        },
+        "description" : "An array of destination objects for where messages are being sent. A valid destination is required.",
+        "writeOnly" : true
+      },
+      "infobip-sms-api.openapi.SMSResponseDetails" : {
+        "type" : "object",
+        "properties" : {
+          "messageId" : {
+            "type" : "string",
+            "description" : "Unique message ID. If not passed, it will be automatically generated and returned in a response.",
+            "readOnly" : true
+          },
+          "status" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.Status"
+          },
+          "to" : {
+            "type" : "string",
+            "description" : "The destination address of the message.",
+            "readOnly" : true
+          }
+        },
+        "description" : "An array of message objects of a single message or multiple messages sent under one bulk ID.",
+        "readOnly" : true
+      },
+      "infobip-sms-api.openapi.RegionalOptions" : {
+        "type" : "object",
+        "properties" : {
+          "indiaDlt" : {
+            "$ref" : "#/components/schemas/infobip-sms-api.openapi.IndiaDltOptions"
+          }
+        },
+        "description" : "Region-specific parameters, often imposed by local laws. Use this, if country or region that you are sending an SMS to requires additional information."
+      },
+      "infobip-sms-api.openapi.DeliveryTime" : {
+        "required" : [ "hour", "minute" ],
+        "type" : "object",
+        "properties" : {
+          "hour" : {
+            "maximum" : 23,
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Hour when the time window opens when used in the `from` property or closes when used in the `to` property.",
+            "format" : "int32",
+            "writeOnly" : true
+          },
+          "minute" : {
+            "maximum" : 59,
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Minute when the time window opens when used in the `from` property or closes when used in the `to` property.",
+            "format" : "int32",
+            "writeOnly" : true
+          }
+        },
+        "description" : "The exact time of day to end sending messages. Time is expressed in the UTC time zone. If set, use it together with the `from` property with minimum 1 hour difference.",
+        "writeOnly" : true
+      },
+      "infobip-sms-api.openapi.IndiaDltOptions" : {
+        "required" : [ "principalEntityId" ],
+        "type" : "object",
+        "properties" : {
+          "contentTemplateId" : {
+            "type" : "string",
+            "description" : "Registered DLT content template ID which matches message you are sending."
+          },
+          "principalEntityId" : {
+            "type" : "string",
+            "description" : "Your assigned DLT principal entity ID."
+          }
+        },
+        "description" : "Distributed Ledger Technology (DLT) specific parameters required for sending SMS to phone numbers registered in India."
+      }
+    },
+    "responses" : { },
+    "parameters" : { },
+    "examples" : { },
+    "requestBodies" : { },
+    "headers" : { },
+    "securitySchemes" : {
+      "APIKeyHeader" : {
+        "type" : "apiKey",
+        "description" : "This is the most secure authorization type and the one with the most flexibility.\n\nAPI keys can be generated by calling the dedicated API method. Furthermore, API keys can have a limited scope and cover only some API methods. Lastly, they can be revoked at any time. This range of possibilities makes API keys well suited for separating the API access rights across multiple applications or use cases. Finally, the loss of an API key is easily manageable.\n\nYou can manage your API keys from [GUI](https://portal.infobip.com/settings/accounts/api-keys), or programmatically with [dedicated API](#platform-&-connectivity/settings).\n\nAPI key Authorization header example:\n\n```shell\nAuthorization: App 003026bbc133714df1834b8638bb496e-8f4b3d9a-e931-478d-a994-28a725159ab9\n```\n",
+        "name" : "Authorization",
+        "in" : "header"
+      },
+      "Basic" : {
+        "type" : "http",
+        "description" : "Basic authorization type can be used in situations when the API key is not available. For example, API methods for generating API keys should be authenticated with the Basic type.\n\nIn this case, the credentials included in the Authorization header should be a Base64 encoded username and password combination. More formally, basic authentication header can be constructed in three steps:\n\n* Username and password are concatenated using the colon `(:)` as a separator `username:password`.\n* The resulting string is encoded using the [RFC2045-MIME](https://www.ietf.org/rfc/rfc2045.txt) variant of Base64.\n* Encoded string is added as credentials after the `\"Basic \"` type.\n\nExample:\n\n```shell\nUsername: \"Aladdin\"\nPassword: \"openSesame\"\n\nConcatenated string: \"Aladdin:openSesame\"\n\nBase64 encoded string: \"QWxhZGRpbjpvcGVuU2VzYW1l\"\n\nAuthorization header: \"Basic QWxhZGRpbjpvcGVuU2VzYW1l\"\n```\n\n> **Implementation detail**: Base64 encoding is a standard and many available programming languages and frameworks provide convenient methods for encoding strings.\n",
+        "scheme" : "basic"
+      },
+      "IBSSOTokenHeader" : {
+        "type" : "apiKey",
+        "description" : "This authorization type is suited for situations when you do not want to store Infobip credentials in your own app. Instead, your users will input their Infobip credentials every time they access your application and the application will use those credentials to create a session. From then on, the session token can be used to authenticate subsequent API requests. Note that the session will expire automatically after a predefined period of inactivity, and can also be manually terminated by making an appropriate API call.\n\nYou can find more details on the creation and behavior of the session at the [dedicated documentation page](#platform-connectivity/account-management/create-session).\n\nAfter obtaining the session token by calling the above-referenced API method you can include it in the Authorization header like this:\n\n```shell\nAuthorization: IBSSO 2f9b4d31-2d0d-49a8-85f0-9b862bdca394\n```\n",
+        "name" : "Authorization",
+        "in" : "header"
+      },
+      "OAuth2" : {
+        "type" : "oauth2",
+        "description" : "Similarly to the IBSSO Token authentication you can use OAuth 2.0 bearer token with Infobip serving both as resource and authorization server. You can obtain the access token using the client credentials grant from `auth/1/oauth2/token` endpoint. It will provide you with your access token, and its expiration period. You can use the token to authorize your API calls until it expires. You can find out more about the process in the [official specification](https://tools.ietf.org/html/rfc6749#section-4.4).\n\nYou can include your access token in the Authorization HTTP request header like this:\n\n```http\nAuthorization: Bearer <access_token>\n```",
+        "flows" : {
+          "clientCredentials" : {
+            "tokenUrl" : "https://api.infobip.com/auth/1/oauth2/token",
+            "scopes" : { }
+          }
+        }
+      }
+    },
+    "links" : { },
+    "callbacks" : { }
+  },
+  "x-tagGroups" : [ {
+    "name" : "SMS",
+    "category" : "CHANNELS",
+    "description" : "Infobip SMS API allows you to send and receive text messages (SMS), fetch or receive delivery reports on your endpoint in real time and ability to see message logs. You can send messages in different languages, schedule your messages, define delivery time window and much more.",
+    "tags" : [ "Send SMS" ]
+  } ],
+  "x-categories" : [ {
+    "name" : "CHANNELS",
+    "summary" : "SMS, WhatsApp, Viber, Email and other communication channels...",
+    "description" : "Create a perfect customer experience by using the channels your customer already use and love."
+  } ]
+}
