@@ -1,8 +1,8 @@
 {
   "openapi" : "3.0.1",
   "info" : {
-    "title" : "Infobip Redoc OpenApi Specification",
-    "description" : "Merged OpenApi Spec containing all public endpoints for documentation purposes.",
+    "title" : "Infobip OpenApi Specification",
+    "description" : "Example Infobip OpenApi Specification for Devoxx London 2022 showcase.",
     "contact" : {
       "name" : "Infobip support",
       "email" : "support@infobip.com"
